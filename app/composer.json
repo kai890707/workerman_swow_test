@@ -1,0 +1,18 @@
+{
+    "require": {
+        "workerman/workerman": "^4.1",
+        "swow/swow": "^1.2",
+        "sdpmlab/anser-action": "^0.3.6",
+        "sdpmlab/anser": "^0.1.5"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+		"psr-4": {
+            "SDPMlab\\AnserGateway\\Orchestrators\\": "Orchestrators",
+            "SDPMlab\\AnserGateway\\Sagas\\": "Sagas",
+            "SDPMlab\\AnserGateway\\Services\\": "Services",
+            "App\\":"App"
+		}
+	}
+}
