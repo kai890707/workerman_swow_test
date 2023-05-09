@@ -6,7 +6,8 @@ use Swow\Coroutine;
 use SDPMlab\Anser\Service\Action;
 use SDPMlab\Anser\Service\ServiceList;
 use Psr\Http\Message\ResponseInterface;
-use SDPMlab\AnserGateway\Orchestrators\v2\CreateOrderOrchestrator;
+// use SDPMlab\AnserGateway\Orchestrators\v2\CreateOrderOrchestrator;
+use SDPMlab\AnserGateway\Orchestrators\v3\CreateOrder;
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/swow.php';
 
@@ -25,7 +26,7 @@ $http_worker->onWorkerStart = static function () {
             $port = null ;
         }
 
-        var_dump($request->getUri());
+        // var_dump($request->getUri());
         // try {
             $swowResponse = $client
             ->connect($request->getUri()->getHost(),$prot ?? $request->getUri()->getPort())
@@ -48,9 +49,13 @@ $http_worker->onWorkerStart = static function () {
     
     ServiceList::setGlobalHandlerStack($swowMiddleware);
 
-    ServiceList::addLocalService("product_service",'product_service',80,false);
-    ServiceList::addLocalService("order_service",'order_service',80,false);
-    ServiceList::addLocalService("payment_service",'payment_service',80,false);
+    // ServiceList::addLocalService("product_service",'product_service',80,false);
+    // ServiceList::addLocalService("order_service",'order_service',80,false);
+    // ServiceList::addLocalService("payment_service",'payment_service',80,false);
+
+    ServiceList::addLocalService("product_service",'140.127.74.162',8081,false);
+    ServiceList::addLocalService("order_service",'140.127.74.163',8082,false);
+    ServiceList::addLocalService("payment_service",'140.127.74.164',8083,false);
 
     
 };
@@ -80,17 +85,19 @@ $http_worker->onMessage = static function ($connection,Request $request) {
         // var_dump("I/O Co : ". "[" . Coroutine::getCurrent()->getId() . "]" . date('H:i:s'));
          
         $startTime = date("Y-m-d H:i:s");
-        // $data           = $request->post();
-        // $product_key    = $data["product_key"];
-        // $product_amount = $data["product_amount"];
-        // $user_key       = $request->header("X-User-Key");
-        $product_key    = 1;
-        $product_amount  = 1;
-        $user_key       = 1;
 
-        $userOrch = new CreateOrderOrchestrator();
+        // $product_key    = 1;
+        // $product_amount  = 1;
+        // $user_key       = 1;
 
-        $result   = $userOrch->build($product_key, $product_amount, $user_key);
+        // $userOrch = new CreateOrderOrchestrator();
+
+        // $result   = $userOrch->build($product_key, $product_amount, $user_key);
+
+        $memberKey = 1;
+		$products  = [1,2];
+        $createOrder = new CreateOrder();
+        $result = $createOrder->build($products, $memberKey);
 
         $endTime = date("Y-m-d H:i:s");
 
