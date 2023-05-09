@@ -1,11 +1,11 @@
 <?php
 
-namespace SDPMlab\AnserGateway\Sagas\V2;
+namespace SDPMlab\AnserGateway\Sagas\v2;
 
 use SDPMlab\Anser\Orchestration\Saga\SimpleSaga;
-use SDPMlab\AnserGateway\Services\V2\OrderService;
-use SDPMlab\AnserGateway\Services\V2\ProductService;
-use SDPMlab\AnserGateway\Services\V2\PaymentService;
+use SDPMlab\AnserGateway\Services\v2\OrderService;
+use SDPMlab\AnserGateway\Services\v2\ProductService;
+use SDPMlab\AnserGateway\Services\v2\PaymentService;
 // require_once __DIR__.'/vendor/autoload.php';
 
 class CreateOrderSaga extends SimpleSaga

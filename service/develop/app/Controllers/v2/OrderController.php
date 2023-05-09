@@ -131,7 +131,7 @@ class OrderController extends BaseController
         }
 
         $now      = date("Y-m-d H:i:s");
-        $orderKey = sha1($u_key . $p_key . $now);
+        $orderKey = sha1($u_key . $p_key . microtime(true));
 
         $orderModel = new OrderModel();
 

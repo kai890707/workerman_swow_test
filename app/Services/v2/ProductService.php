@@ -1,6 +1,6 @@
 <?php
 
-namespace SDPMlab\AnserGateway\Services\V2;
+namespace SDPMlab\AnserGateway\Services\v2;
 
 use SDPMlab\Anser\Service\SimpleService;
 use SDPMlab\Anser\Exception\ActionException;

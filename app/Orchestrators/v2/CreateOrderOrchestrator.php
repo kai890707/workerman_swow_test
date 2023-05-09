@@ -1,12 +1,12 @@
 <?php
 
-namespace SDPMlab\AnserGateway\Orchestrators\V2;
+namespace SDPMlab\AnserGateway\Orchestrators\v2;
 
-use SDPMlab\AnserGateway\Sagas\V2\CreateOrderSaga;
+use SDPMlab\AnserGateway\Sagas\v2\CreateOrderSaga;
 use SDPMlab\Anser\Orchestration\Orchestrator;
-use SDPMlab\AnserGateway\Services\V2\ProductService;
-use SDPMlab\AnserGateway\Services\V2\PaymentService;
-use SDPMlab\AnserGateway\Services\V2\OrderService;
+use SDPMlab\AnserGateway\Services\v2\ProductService;
+use SDPMlab\AnserGateway\Services\v2\PaymentService;
+use SDPMlab\AnserGateway\Services\v2\OrderService;
 use Exception;
 use SDPMlab\Anser\Orchestration\OrchestratorInterface;
 use SDPMlab\Anser\Orchestration\Saga\Cache\CacheFactory;

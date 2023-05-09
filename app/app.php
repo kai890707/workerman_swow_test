@@ -6,7 +6,7 @@ use Swow\Coroutine;
 use SDPMlab\Anser\Service\Action;
 use SDPMlab\Anser\Service\ServiceList;
 use Psr\Http\Message\ResponseInterface;
-use SDPMlab\AnserGateway\Orchestrators\V2\CreateOrderOrchestrator;
+use SDPMlab\AnserGateway\Orchestrators\v2\CreateOrderOrchestrator;
 require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . '/swow.php';
 
@@ -25,14 +25,15 @@ $http_worker->onWorkerStart = static function () {
             $port = null ;
         }
 
-        try {
+        var_dump($request->getUri());
+        // try {
             $swowResponse = $client
             ->connect($request->getUri()->getHost(),$prot ?? $request->getUri()->getPort())
             ->setTimeout((int)$options['timeout'] * 1000)
             ->sendRequest($request);
-        } catch (\Swow\Exception $e) {
-            var_dump($e);
-        }
+        // } catch (\Swow\Exception $e) {
+        //     var_dump($e);
+        // }
         
         $response = new \GuzzleHttp\Psr7\Response(
             $swowResponse->getStatusCode(),
@@ -50,6 +51,7 @@ $http_worker->onWorkerStart = static function () {
     ServiceList::addLocalService("product_service",'product_service',80,false);
     ServiceList::addLocalService("order_service",'order_service',80,false);
     ServiceList::addLocalService("payment_service",'payment_service',80,false);
+
     
 };
 // Emitted when data received
@@ -83,7 +85,7 @@ $http_worker->onMessage = static function ($connection,Request $request) {
         // $product_amount = $data["product_amount"];
         // $user_key       = $request->header("X-User-Key");
         $product_key    = 1;
-        $product_amount  = 20;
+        $product_amount  = 1;
         $user_key       = 1;
 
         $userOrch = new CreateOrderOrchestrator();
